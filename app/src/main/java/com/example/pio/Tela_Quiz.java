@@ -1,6 +1,7 @@
 package com.example.pio;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +21,15 @@ public class Tela_Quiz extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-    }
+
+            String nome = getIntent().getStringExtra("nickname");
+
+            if (nome == null || nome.isEmpty()) {
+                nome = "Jogador";
+            }
+
+            TextView textView2 = findViewById(R.id.textView2);
+            textView2.setText("Que os jogos comecem, " + nome + "!");
+        }
+
 }
