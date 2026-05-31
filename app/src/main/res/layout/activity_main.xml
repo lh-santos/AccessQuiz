@@ -43,9 +43,22 @@
         android:id="@+id/button"
         android:layout_width="137dp"
         android:layout_height="60dp"
-        android:text="Iniciar"
         android:shadowColor="@color/black"
-        tools:layout_editor_absoluteX="137dp"
-        tools:layout_editor_absoluteY="711dp" />
+        android:text="Iniciar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.808" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="324dp"
+        android:layout_height="292dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/imagem_do_whatsapp_de_2025_09_04___s__18_27_26_b7923c09" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
