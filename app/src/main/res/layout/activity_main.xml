@@ -3,24 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#B8860B"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity" >
+    android:background="#1D1D26"
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="301dp"
         android:layout_height="65dp"
         android:text="AccessQuiz"
-        android:textSize="50dp"
+        android:textColor="#3A97A2"
+        android:textSize="48sp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049" />
 
-    <androidx.constraintlayout.widget.Group android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <EditText
@@ -30,7 +33,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#BDBDBD"
         android:ems="10"
-        android:hint="Nickname"
+        android:hint="Nome"
         android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +48,8 @@
         android:layout_height="60dp"
         android:shadowColor="@color/black"
         android:text="Iniciar"
+        android:textColor="#FBFBFB"
+        android:textColorHint="#952525"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
