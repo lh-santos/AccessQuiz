@@ -26,15 +26,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button Iniciar = findViewById(R.id.Editbt);
-
-        Iniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Tela_Quiz.class);
-                startActivity(intent);
-            }
-        });
-
         Iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

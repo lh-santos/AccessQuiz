@@ -9,14 +9,80 @@
     tools:context=".Tela_Quiz">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="246dp"
-        android:layout_height="24dp"
-        android:text="Que os joogos comecem"
+        android:id="@+id/EditMenssagem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Que os jogos comecem"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/EditContador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Pergunta 1/10"
+        app:layout_constraintStart_toStartOf="@+id/EditMenssagem"
+        app:layout_constraintTop_toBottomOf="@+id/EditMenssagem" />
+
+    <TextView
+        android:id="@+id/tvEnunciado"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Enunciado da pergunta aqui?"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/EditContador"
+        app:layout_constraintTop_toBottomOf="@+id/EditContador" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvEnunciado"
+        app:layout_constraintTop_toBottomOf="@+id/tvEnunciado">
+
+        <RadioButton
+            android:id="@+id/rbOpcao0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Opção 0" />
+
+        <RadioButton
+            android:id="@+id/rbOpcao1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Opção 1" />
+
+        <RadioButton
+            android:id="@+id/rbOpcao2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Opção 2" />
+
+        <RadioButton
+            android:id="@+id/rbOpcao3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Opção 3" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnResponder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Responder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.094" />
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
