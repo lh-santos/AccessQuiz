@@ -35,6 +35,7 @@
         android:ems="10"
         android:hint="Nome"
         android:inputType="text"
+        android:textColorHint="#EDEAEA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -46,24 +47,17 @@
         android:id="@+id/Editbt"
         android:layout_width="137dp"
         android:layout_height="60dp"
+        android:backgroundTint="#3A97A2"
         android:shadowColor="@color/black"
         android:text="Iniciar"
-        android:textColor="#FBFBFB"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
         android:textColorHint="#952525"
+        android:textColorLink="#B41F1F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.808" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="324dp"
-        android:layout_height="292dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/imagem_do_whatsapp_de_2025_09_04___s__18_27_26_b7923c09" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

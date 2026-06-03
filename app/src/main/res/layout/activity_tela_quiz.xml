@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#B8860B"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1D1D26"
     tools:context=".Tela_Quiz">
 
     <TextView
@@ -13,10 +13,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:gravity="center"
         android:text="Que os jogos comecem"
+        android:textColor="#3A97A2"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Pergunta 1/10"
+        android:textColor="#3A97A2"
         app:layout_constraintStart_toStartOf="@+id/EditMenssagem"
         app:layout_constraintTop_toBottomOf="@+id/EditMenssagem" />
 
@@ -36,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Enunciado da pergunta aqui?"
+        android:textColor="#3A97A2"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/EditContador"
@@ -54,25 +57,29 @@
             android:id="@+id/rbOpcao0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Opção 0" />
+            android:text="Opção 0"
+            android:textColor="#3A97A2" />
 
         <RadioButton
             android:id="@+id/rbOpcao1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Opção 1" />
+            android:text="Opção 1"
+            android:textColor="#3A97A2" />
 
         <RadioButton
             android:id="@+id/rbOpcao2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Opção 2" />
+            android:text="Opção 2"
+            android:textColor="#3A97A2" />
 
         <RadioButton
             android:id="@+id/rbOpcao3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Opção 3" />
+            android:text="Opção 3"
+            android:textColor="#3A97A2" />
     </RadioGroup>
 
     <Button
