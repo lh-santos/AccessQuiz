@@ -1,6 +1,7 @@
 package com.example.pio;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,6 +17,18 @@ import java.util.ArrayList;
 
 public class Tela_Quiz extends AppCompatActivity {
 
+    int indicePerguntaAtual = 0;
+    int pontuacao = 0;
+    String nome = "Jogador";
+
+    ArrayList<Pergunta> perguntas = new ArrayList<>();
+    ArrayList<Integer> respostasUsuario = new ArrayList<>();
+
+    TextView EditMenssagem, EditContador, tvEnunciado;
+    RadioGroup radioGroup;
+    RadioButton rb0, rb1, rb2, rb3;
+    Button btnResponder;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,26 +40,27 @@ public class Tela_Quiz extends AppCompatActivity {
             return insets;
         });
 
-        int indicePerguntaAtual = 0;
-        int pontuacao = 0;
-        String nome = "Jogador";
 
-        ArrayList<Pergunta> perguntas = new ArrayList<>();
-        ArrayList<Integer> respostasUsuario = new ArrayList<>();
 
-        TextView EditMenssagem, EditContador, tvEnunciado;
-        RadioGroup radioGroup;
-        RadioButton rb0, rb1, rb2, rb3;
-        Button btnResponder;
+        EditMenssagem = findViewById(R.id.EditMenssagem);
+        EditContador = findViewById(R.id.EditContador);
+        tvEnunciado = findViewById(R.id.tvEnunciado);
+        radioGroup = findViewById(R.id.radioGroup);
+        rb0 = findViewById(R.id.rbOpcao0);
+        rb1 = findViewById(R.id.rbOpcao1);
+        rb2 = findViewById(R.id.rbOpcao2);
+        rb3 = findViewById(R.id.rbOpcao3);
+        btnResponder = findViewById(R.id.btnResponder);
 
-        getIntent().getStringExtra("nickname");
+
+
+        nome = getIntent().getStringExtra("nickname");
 
             if (nome == null || nome.isEmpty()) {
                 nome = "Jogador";
             }
 
-            TextView textView2 = findViewById(R.id.EditMenssagem);
-            textView2.setText("Que os jogos comecem, " + nome + "!");
+        EditMenssagem.setText("Que os jogos comecem, " + nome + "!");
 
         perguntas.add(new Pergunta(
                 "Em POO, qual conceito permite que uma classe herde atributos e métodos de outra classe?",
@@ -109,6 +123,64 @@ public class Tela_Quiz extends AppCompatActivity {
         ));
 
 
-        }
+
+        carregarPergunta();
+
+        btnResponder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int idSelecionado = radioGroup.getCheckedRadioButtonId();
+
+                if(idSelecionado == -1) {
+                    return;
+                }
+
+                int respostaEscolhida = -1;
+
+                if (idSelecionado == R.id.rbOpcao0) {
+                    respostaEscolhida = 0;
+
+                } else if (idSelecionado == R.id.rbOpcao1) {
+                    respostaEscolhida = 1;
+
+                } else if (idSelecionado == R.id.rbOpcao2) {
+                    respostaEscolhida = 2;
+
+                } else if (idSelecionado == R.id.rbOpcao3) {
+                    respostaEscolhida = 3;
+
+                }
+
+                if(respostaEscolhida == perguntas.get(indicePerguntaAtual).resposta) {
+                    pontuacao++;
+                }
+
+                if(indicePerguntaAtual < 9) {
+                    indicePerguntaAtual++;
+                    carregarPergunta();
+
+                } else {
+
+                }
+            }
+        });
+
+
+    }
+
+    void carregarPergunta() {
+        Pergunta perguntaAtual = perguntas.get(indicePerguntaAtual);
+
+        tvEnunciado.setText(perguntaAtual.enunciado);
+
+        rb0.setText(perguntaAtual.opcoes[0]);
+        rb1.setText(perguntaAtual.opcoes[1]);
+        rb2.setText(perguntaAtual.opcoes[2]);
+        rb3.setText(perguntaAtual.opcoes[3]);
+
+        EditContador.setText("Pergunta " + (indicePerguntaAtual + 1)  + "/10");
+
+        radioGroup.clearCheck();
+    }
 
 }

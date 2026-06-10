@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
                 String nome = editNickname.getText().toString();
 
                 Intent intent = new Intent(MainActivity.this, Tela_Quiz.class);
-                intent.putExtra("nickname", nome); // envia o nome
+                intent.putExtra("nickname", nome);
                 startActivity(intent);
             }
         });
