@@ -31,6 +31,6 @@ public class tela_resultado extends AppCompatActivity {
         int pontuacaoFinal = getIntent().getIntExtra("pontuacao", 0);
         String nome = getIntent().getStringExtra("nickname");
 
-        Editpontos.setText(nome + ", sua pontuação foi " + pontuacaoFinal + "/10, você é um beta, codafofo ");
+        Editpontos.setText(nome + ", sua pontuação foi " + pontuacaoFinal + "/10, você é um beta, codafofo!!!");
     }
 }
