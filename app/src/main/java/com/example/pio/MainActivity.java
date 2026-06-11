@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Tela_Quiz.class);
                 intent.putExtra("nickname", nome);
                 startActivity(intent);
+
+
             }
         });
     }

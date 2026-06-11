@@ -5,8 +5,25 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0F172A"
+    android:background="@drawable/bg_quiz"
     tools:context=".Tela_Quiz">
+
+
+    <ProgressBar
+        android:id="@+id/progressQuiz"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="137dp"
+        android:layout_marginEnd="24dp"
+        android:max="10"
+        android:progress="1"
+        android:progressTint="#34D399"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/EditMenssagem"
@@ -15,7 +32,7 @@
         android:layout_margin="16dp"
         android:gravity="center"
         android:text="Que os jogos comecem"
-        android:textColor="#A7F3D0"
+        android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Pergunta 1/10"
+        android:text="Pergunta 1 de 10"
         android:textColor="#A7F3D0"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -40,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Enunciado da pergunta aqui?"
-        android:textColor="#A7F3D0"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,53 +66,53 @@
 
     <RadioGroup
         android:id="@+id/radioGroup"
-        android:layout_width="404dp"
+        android:layout_width="380dp"
         android:layout_height="300dp"
         android:layout_marginTop="48dp"
         app:layout_constraintBottom_toTopOf="@+id/btnResponder"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/tvEnunciado"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEnunciado"
         app:layout_constraintVertical_bias="0.35">
 
         <RadioButton
             android:id="@+id/rbOpcao0"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/edittext_style"
+            android:layout_height="75dp"
+            android:background="@drawable/bg_option"
             android:text="Opção 0"
-            android:textColor="#A7F3D0"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/rbOpcao1"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/edittext_style"
+            android:layout_height="75dp"
+            android:background="@drawable/bg_option"
             android:text="Opção 1"
-            android:textColor="#A7F3D0"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/rbOpcao2"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/edittext_style"
+            android:layout_height="75dp"
+            android:background="@drawable/bg_option"
             android:text="Opção 2"
-            android:textColor="#A7F3D0"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/rbOpcao3"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@drawable/edittext_style"
+            android:layout_height="75dp"
+            android:background="@drawable/bg_option"
             android:text="Opção 3"
-            android:textColor="#A7F3D0"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />
     </RadioGroup>
