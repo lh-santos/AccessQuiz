@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        Button Iniciar = findViewById(R.id.Editbt);
+        Button Iniciar = findViewById(R.id.btnIniciar);
         Iniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText editNickname = findViewById(R.id.EditNikiname);
+                EditText editNickname = findViewById(R.id.edtNome);
                 String nome = editNickname.getText().toString();
 
                 Intent intent = new Intent(MainActivity.this, Tela_Quiz.class);
