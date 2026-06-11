@@ -8,7 +8,6 @@
     android:background="@drawable/bg_quiz"
     tools:context=".Tela_Quiz">
 
-
     <ProgressBar
         android:id="@+id/progressQuiz"
         style="?android:attr/progressBarStyleHorizontal"
