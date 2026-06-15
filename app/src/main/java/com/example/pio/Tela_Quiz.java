@@ -166,21 +166,52 @@ public class Tela_Quiz extends AppCompatActivity {
                     respostaEscolhida = 3;
                 }
 
-                if (respostaEscolhida == perguntas.get(indicePerguntaAtual).resposta) {
-                    pontuacao++;
-                }
+                int respostaCorreta = perguntas.get(indicePerguntaAtual).resposta;
 
-                if (indicePerguntaAtual < perguntas.size() - 1) {
-                    indicePerguntaAtual++;
-                    carregarPergunta();
+                RadioButton[] botoes = {rb0, rb1, rb2, rb3};
+
+                if (respostaEscolhida == respostaCorreta) {
+
+                    pontuacao++;
+
+                    botoes[respostaCorreta]
+                            .setBackgroundResource(R.drawable.radio_correta);
+
                 } else {
 
-                    Intent intent = new Intent(Tela_Quiz.this, tela_resultado.class);
-                    intent.putExtra("pontuacao", pontuacao);
-                    intent.putExtra("nickname", nome);
-                    startActivity(intent);
-                    finish();
+                    botoes[respostaEscolhida]
+                            .setBackgroundResource(R.drawable.radio_errada);
+
+                    botoes[respostaCorreta]
+                            .setBackgroundResource(R.drawable.radio_correta);
                 }
+
+                btnResponder.setEnabled(false);
+
+                new android.os.Handler().postDelayed(() -> {
+
+                    if (indicePerguntaAtual < perguntas.size() - 1) {
+
+                        indicePerguntaAtual++;
+                        carregarPergunta();
+
+                        btnResponder.setEnabled(true);
+
+                    } else {
+
+                        Intent intent = new Intent(
+                                Tela_Quiz.this,
+                                tela_resultado.class
+                        );
+
+                        intent.putExtra("pontuacao", pontuacao);
+                        intent.putExtra("nickname", nome);
+
+                        startActivity(intent);
+                        finish();
+                    }
+
+                }, 1500);
             }
         });
     }
@@ -197,10 +228,15 @@ public class Tela_Quiz extends AppCompatActivity {
         rb3.setText(perguntaAtual.opcoes[3]);
 
         EditContador.setText(
-                "Pergunta " + (indicePerguntaAtual + 1) + "/" + perguntas.size()
+                "Pergunta " + (indicePerguntaAtual + 1) + " de " + perguntas.size()
         );
 
         progressQuiz.setProgress(indicePerguntaAtual + 1);
+
+        rb0.setBackgroundResource(R.drawable.bg_option);
+        rb1.setBackgroundResource(R.drawable.bg_option);
+        rb2.setBackgroundResource(R.drawable.bg_option);
+        rb3.setBackgroundResource(R.drawable.bg_option);
 
         radioGroup.clearCheck();
     }
