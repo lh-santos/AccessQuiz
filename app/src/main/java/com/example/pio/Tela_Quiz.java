@@ -16,10 +16,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tela_Quiz extends AppCompatActivity {
 
+    FirebaseFirestore db;
     int indicePerguntaAtual = 0;
     int pontuacao = 0;
     String nome = "Jogador";
@@ -45,6 +51,8 @@ public class Tela_Quiz extends AppCompatActivity {
             return insets;
         });
 
+        db = FirebaseFirestore.getInstance();
+
         EditMenssagem = findViewById(R.id.EditMenssagem);
         EditContador = findViewById(R.id.EditContador);
         tvEnunciado = findViewById(R.id.tvEnunciado);
@@ -64,6 +72,8 @@ public class Tela_Quiz extends AppCompatActivity {
         if (nome == null || nome.isEmpty()) {
             nome = "Jogador";
         }
+
+
 
         EditMenssagem.setText("Que os jogos comecem, " + nome + "!");
 
@@ -198,6 +208,20 @@ public class Tela_Quiz extends AppCompatActivity {
                         btnResponder.setEnabled(true);
 
                     } else {
+
+                        Map<String, Object> dados = new HashMap<>();
+                        dados.put("nome", nome);
+                        dados.put("pontuacao", pontuacao);
+                        dados.put("data", new Date());
+
+                        db.collection("pontuacoes").add(dados)
+                                .addOnSuccessListener(doc -> {
+                                    // salvou com sucesso
+                                })
+                                .addOnFailureListener(e -> {
+                                    // erro ao salvar
+                                    e.printStackTrace();
+                                });
 
                         Intent intent = new Intent(
                                 Tela_Quiz.this,
