@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_quiz">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="➕ Nova Pergunta"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"/>
+
+        <EditText
+            android:id="@+id/edtEnunciado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enunciado da pergunta"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:background="@drawable/edittext_style"
+            android:padding="15dp"
+            android:minLines="2"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/edtOpcao0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opção 0"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:background="@drawable/edittext_style"
+            android:padding="15dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edtOpcao1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opção 1"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:background="@drawable/edittext_style"
+            android:padding="15dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edtOpcao2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opção 2"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:background="@drawable/edittext_style"
+            android:padding="15dp"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/edtOpcao3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Opção 3"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:background="@drawable/edittext_style"
+            android:padding="15dp"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/edtResposta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Índice da resposta correta (0, 1, 2 ou 3)"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#94A3B8"
+            android:background="@drawable/edittext_style"
+            android:padding="15dp"
+            android:inputType="number"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnSalvarPergunta"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="SALVAR PERGUNTA"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#34D399"/>
+
+    </LinearLayout>
+</ScrollView>

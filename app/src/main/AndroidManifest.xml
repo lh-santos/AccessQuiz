@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pio">
         <activity
+            android:name=".Tela_AdicionarPergunta"
+            android:exported="false" />
+        <activity
+            android:name=".Tela_Ranking"
+            android:exported="false" />
+        <activity
             android:name=".Tela_Quiz"
             android:exported="false" />
         <activity

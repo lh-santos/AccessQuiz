@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText edtNome, edtEmail, edtSenha;
     Button btnIniciar, btnCadastrar;
+    TextView tvAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
         btnCadastrar = findViewById(R.id.btnCadastrar);
         btnIniciar = findViewById(R.id.btnIniciar);
         btnCadastrar = findViewById(R.id.btnCadastrar);
+        tvAdmin = findViewById(R.id.tvAdmin);
 
+        tvAdmin.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Tela_AdicionarPergunta.class);
+            startActivity(intent);
+        });
 
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override

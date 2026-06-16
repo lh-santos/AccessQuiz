@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +18,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
-import java.util.Date;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,207 +57,115 @@ public class Tela_Quiz extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         EditMenssagem = findViewById(R.id.EditMenssagem);
-        EditContador = findViewById(R.id.EditContador);
-        tvEnunciado = findViewById(R.id.tvEnunciado);
-        radioGroup = findViewById(R.id.radioGroup);
-        rb0 = findViewById(R.id.rbOpcao0);
-        rb1 = findViewById(R.id.rbOpcao1);
-        rb2 = findViewById(R.id.rbOpcao2);
-        rb3 = findViewById(R.id.rbOpcao3);
-        btnResponder = findViewById(R.id.btnResponder);
-
-        progressQuiz = findViewById(R.id.progressQuiz);
-        progressQuiz.setMax(10);
-        progressQuiz.setProgress(1);
+        EditContador  = findViewById(R.id.EditContador);
+        tvEnunciado   = findViewById(R.id.tvEnunciado);
+        radioGroup    = findViewById(R.id.radioGroup);
+        rb0           = findViewById(R.id.rbOpcao0);
+        rb1           = findViewById(R.id.rbOpcao1);
+        rb2           = findViewById(R.id.rbOpcao2);
+        rb3           = findViewById(R.id.rbOpcao3);
+        btnResponder  = findViewById(R.id.btnResponder);
+        progressQuiz  = findViewById(R.id.progressQuiz);
 
         nome = getIntent().getStringExtra("nickname");
-
-        if (nome == null || nome.isEmpty()) {
-            nome = "Jogador";
-        }
-
-
+        if (nome == null || nome.isEmpty()) nome = "Jogador";
 
         EditMenssagem.setText("Que os jogos comecem, " + nome + "!");
+        btnResponder.setEnabled(false);
 
-        perguntas.add(new Pergunta(
-                "Em POO, qual conceito permite que uma classe herde atributos e métodos de outra classe?",
-                new String[]{"Encapsulamento", "Polimorfismo", "Herança", "Abstração"},
-                2
-        ));
+        db.collection("perguntas").get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                        String enunciado    = doc.getString("enunciado");
+                        ArrayList<String> opcoesList = (ArrayList<String>) doc.get("opcoes");
+                        Long respostaLong   = doc.getLong("resposta");
 
-        perguntas.add(new Pergunta(
-                "Qual estrutura de repetição é mais indicada quando se sabe previamente o número exato de vezes que o bloco deve ser executado?",
-                new String[]{"while", "for", "do-while", "if-else"},
-                1
-        ));
-
-        perguntas.add(new Pergunta(
-                "O que é um Objeto no contexto da Programação Orientada a Objetos?",
-                new String[]{"Uma especificação abstrata que define uma estrutura",
-                        "Uma instância real de uma classe que ocupa espaço em memória",
-                        "Um método estático que executa cálculos",
-                        "Um tipo de dado primitivo como int ou boolean"},
-                1
-        ));
-
-        perguntas.add(new Pergunta(
-                "Qual palavra-chave é utilizada em Java para indicar que uma classe está herdando de outra?",
-                new String[]{"implements", "inherits", "import", "extends"},
-                3
-        ));
-
-        perguntas.add(new Pergunta(
-                "O que caracteriza o Encapsulamento na POO?",
-                new String[]{"Tornar todos os atributos públicos",
-                        "Esconder detalhes internos e proteger dados",
-                        "Criar métodos com o mesmo nome",
-                        "Permitir instanciar sem construtor"},
-                1
-        ));
-
-        perguntas.add(new Pergunta(
-                "Qual operador lógico retorna verdadeiro apenas se ambas as condições forem verdadeiras?",
-                new String[]{"OU (||)", "NÃO (!)", "E (&&)", "XOR (^)"},
-                2
-        ));
-
-        perguntas.add(new Pergunta(
-                "O que é Polimorfismo?",
-                new String[]{"Assumir várias formas",
-                        "Copiar dados de objetos",
-                        "Proibir alteração de variáveis",
-                        "Criar classes sem métodos"},
-                0
-        ));
-
-        perguntas.add(new Pergunta(
-                "Qual a função de um construtor?",
-                new String[]{"Destruir objetos",
-                        "Inicializar atributos",
-                        "Executar loops",
-                        "Imprimir dados"},
-                1
-        ));
-
-        perguntas.add(new Pergunta(
-                "Um array de tamanho 5 possui quais índices?",
-                new String[]{"1 a 5", "0 a 4", "0 a 5", "1 a 4"},
-                1
-        ));
-
-        perguntas.add(new Pergunta(
-                "O que define uma classe abstrata?",
-                new String[]{"Não pode ser instanciada diretamente",
-                        "Só possui métodos estáticos",
-                        "É importada automaticamente",
-                        "Aceita qualquer tipo de dado"},
-                0
-        ));
-
-        carregarPergunta();
-
-        btnResponder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                int idSelecionado = radioGroup.getCheckedRadioButtonId();
-
-                if (idSelecionado == -1) {
-                    return;
-                }
-
-                int respostaEscolhida;
-
-                if (idSelecionado == R.id.rbOpcao0) {
-                    respostaEscolhida = 0;
-                } else if (idSelecionado == R.id.rbOpcao1) {
-                    respostaEscolhida = 1;
-                } else if (idSelecionado == R.id.rbOpcao2) {
-                    respostaEscolhida = 2;
-                } else {
-                    respostaEscolhida = 3;
-                }
-
-                int respostaCorreta = perguntas.get(indicePerguntaAtual).resposta;
-
-                RadioButton[] botoes = {rb0, rb1, rb2, rb3};
-
-                if (respostaEscolhida == respostaCorreta) {
-
-                    pontuacao++;
-
-                    botoes[respostaCorreta]
-                            .setBackgroundResource(R.drawable.radio_correta);
-
-                } else {
-
-                    botoes[respostaEscolhida]
-                            .setBackgroundResource(R.drawable.radio_errada);
-
-                    botoes[respostaCorreta]
-                            .setBackgroundResource(R.drawable.radio_correta);
-                }
-
-                btnResponder.setEnabled(false);
-
-                new android.os.Handler().postDelayed(() -> {
-
-                    if (indicePerguntaAtual < perguntas.size() - 1) {
-
-                        indicePerguntaAtual++;
-                        carregarPergunta();
-
-                        btnResponder.setEnabled(true);
-
-                    } else {
-
-                        Map<String, Object> dados = new HashMap<>();
-                        dados.put("nome", nome);
-                        dados.put("pontuacao", pontuacao);
-                        dados.put("data", new Date());
-
-                        db.collection("pontuacoes").add(dados)
-                                .addOnSuccessListener(doc -> {
-                                    // salvou com sucesso
-                                })
-                                .addOnFailureListener(e -> {
-                                    // erro ao salvar
-                                    e.printStackTrace();
-                                });
-
-                        Intent intent = new Intent(
-                                Tela_Quiz.this,
-                                tela_resultado.class
-                        );
-
-                        intent.putExtra("pontuacao", pontuacao);
-                        intent.putExtra("nickname", nome);
-
-                        startActivity(intent);
-                        finish();
+                        if (enunciado != null && opcoesList != null && respostaLong != null) {
+                            String[] opcoes = opcoesList.toArray(new String[0]);
+                            perguntas.add(new Pergunta(enunciado, opcoes, respostaLong.intValue()));
+                        }
                     }
 
-                }, 1500);
+                    if (perguntas.isEmpty()) {
+                        Toast.makeText(this, "Nenhuma pergunta encontrada!", Toast.LENGTH_LONG).show();
+                        finish();
+                        return;
+                    }
+
+                    Collections.shuffle(perguntas);
+                    if (perguntas.size() > 10) {
+                        perguntas = new ArrayList<>(perguntas.subList(0, 10));
+                    }
+
+                    progressQuiz.setMax(perguntas.size());
+                    progressQuiz.setProgress(1);
+                    carregarPergunta();
+                    btnResponder.setEnabled(true);
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Erro ao carregar perguntas!", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                });
+
+        btnResponder.setOnClickListener(v -> {
+            int idSelecionado = radioGroup.getCheckedRadioButtonId();
+            if (idSelecionado == -1) return;
+
+            int respostaEscolhida;
+            if      (idSelecionado == R.id.rbOpcao0) respostaEscolhida = 0;
+            else if (idSelecionado == R.id.rbOpcao1) respostaEscolhida = 1;
+            else if (idSelecionado == R.id.rbOpcao2) respostaEscolhida = 2;
+            else                                     respostaEscolhida = 3;
+
+            int respostaCorreta = perguntas.get(indicePerguntaAtual).resposta;
+            RadioButton[] botoes = {rb0, rb1, rb2, rb3};
+
+            if (respostaEscolhida == respostaCorreta) {
+                pontuacao++;
+                botoes[respostaCorreta].setBackgroundResource(R.drawable.radio_correta);
+            } else {
+                botoes[respostaEscolhida].setBackgroundResource(R.drawable.radio_errada);
+                botoes[respostaCorreta].setBackgroundResource(R.drawable.radio_correta);
             }
+
+            btnResponder.setEnabled(false);
+
+            new android.os.Handler().postDelayed(() -> {
+                if (indicePerguntaAtual < perguntas.size() - 1) {
+                    indicePerguntaAtual++;
+                    carregarPergunta();
+                    btnResponder.setEnabled(true);
+                } else {
+                    Map<String, Object> dados = new HashMap<>();
+                    dados.put("nome", nome);
+                    dados.put("pontuacao", pontuacao);
+                    dados.put("data", new Date());
+
+                    db.collection("pontuacoes").add(dados)
+                            .addOnSuccessListener(doc -> {})
+                            .addOnFailureListener(e -> e.printStackTrace());
+
+                    Intent intent = new Intent(Tela_Quiz.this, tela_resultado.class);
+                    intent.putExtra("pontuacao", pontuacao);
+                    intent.putExtra("totalPerguntas", perguntas.size());
+                    intent.putExtra("nickname", nome);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 1500);
         });
     }
 
     void carregarPergunta() {
+        Pergunta p = perguntas.get(indicePerguntaAtual);
 
-        Pergunta perguntaAtual = perguntas.get(indicePerguntaAtual);
+        tvEnunciado.setText(p.enunciado);
+        rb0.setText(p.opcoes[0]);
+        rb1.setText(p.opcoes[1]);
+        rb2.setText(p.opcoes[2]);
+        rb3.setText(p.opcoes[3]);
 
-        tvEnunciado.setText(perguntaAtual.enunciado);
-
-        rb0.setText(perguntaAtual.opcoes[0]);
-        rb1.setText(perguntaAtual.opcoes[1]);
-        rb2.setText(perguntaAtual.opcoes[2]);
-        rb3.setText(perguntaAtual.opcoes[3]);
-
-        EditContador.setText(
-                "Pergunta " + (indicePerguntaAtual + 1) + " de " + perguntas.size()
-        );
-
+        EditContador.setText("Pergunta " + (indicePerguntaAtual + 1) + " de " + perguntas.size());
         progressQuiz.setProgress(indicePerguntaAtual + 1);
 
         rb0.setBackgroundResource(R.drawable.bg_option);
